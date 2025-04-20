@@ -1,4 +1,46 @@
-<!DOCTYPE html>
+<script>
+    window.onload = function() {
+      // סיבוב המלצות
+      const testimonials = document.querySelectorAll('.testimonial');
+      let tIndex = 0;
+      setInterval(() => {
+        testimonials[tIndex].classList.remove('active');
+        tIndex = (tIndex + 1) % testimonials.length;
+        testimonials[tIndex].classList.add('active');
+      }, 5000);
+      
+      // בדיקה אם יש הודעת תודה בכתובת
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('thankyou') === 'true') {
+        document.getElementById('success-msg').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('success-msg').style.display = 'none';
+        }, 5000);
+      }
+    }
+    
+    // תפריט נייד
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    const overlay = document.getElementById('overlay');
+    
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+    
+    overlay.addEventListener('click', () => {
+      menu.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+    
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+      });
+    });
+  </script><!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
@@ -242,7 +284,9 @@
       <p>מוכנים להעניק לאורחים שלכם חוויית קולנוע מרהיבה שתיזכר לאורך זמן? אנחנו כאן בשבילכם!</p>
       <p><strong>טלפון:</strong> <span dir="ltr"><a href="tel:+972542070020">054‑207‑0020</a></span><br>
         <strong>דוא״ל:</strong> <a href="mailto:mailotgroup@gmail.com">mailotgroup@gmail.com</a></p>
-      <form id="contact-form">
+      <form id="contact-form" action="https://formsubmit.co/mailotgroup@gmail.com" method="POST">
+        <input type="hidden" name="_next" value="https://tmarchum.github.io/otcinema/?thankyou=true">
+        <input type="hidden" name="_captcha" value="false">
         <input type="text" name="name" placeholder="שם מלא" required />
         <input type="email" name="email" placeholder="דוא&quot;ל" required />
         <textarea name="message" placeholder="ספרו לנו על האירוע שלכם" required></textarea>

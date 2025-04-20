@@ -66,7 +66,7 @@
     /* לוגו */
     .logo{
       position: absolute;
-      top: 80px; /* הורדת הלוגו למטה יותר */
+      top: 60px; /* הורדת הלוגו קצת למעלה */
       left: 20px;
       width: 120px;
       height: auto;
@@ -75,7 +75,7 @@
     @media (max-width: 768px) {
       .logo {
         width: 80px;
-        top: 60px; /* הורדת הלוגו במובייל */
+        top: 40px; /* הורדת הלוגו במובייל */
         left: 15px;
       }
     }
@@ -222,9 +222,10 @@
     <h2 class="section-title">שאלות נפוצות</h2>
     <details><summary>מה קורה במקרה של גשם?</summary><p>אנחנו גמישים במיוחד - נוכל לדחות את האירוע ללא קנס או להעביר את ההקרנה לחלל סגור לפי הצורך.</p></details>
     <details><summary>איזה חיבור חשמל נדרש?</summary><p>נדרש חיבור חשמל רגיל בלבד - פשוט וקל!</p></details>
-    <details><summary>האם ניתן להקרין סרטים לילדים?</summary><p>בהחלט! יש לנו מגוון אפשרויות לאירועי ילדים, רק דרוש אישור הקרנה מתאים מהמפיץ.</p></details>
+    <details><summary>איזה סוג הקרנה אתם מציעים?</summary><p>אנחנו היחידים בארץ המאפשרים הקרנה קדמית ואחורית.</p></details>
     <details><summary>האם יש לכם אישור הקרנה?</summary><p>כן, אנחנו מפיצים מורשים ועובדים אך ורק עם אישורי הקרנה חוקיים.</p></details>
     <details><summary>אילו סרטים ניתן להקרין?</summary><p>כל סרט המאושר על ידי המפיצים - מסרטי ילדים ועד להיטים למבוגרים, בהתאם לאישורי ההקרנה.</p></details>
+    <details><summary>מה שעת ההקרנה?</summary><p>משעת שקיעה ואילך. בחללים סגורים חשוכים, כל שעות היממה.</p></details>
   </section>
   <!-- ░░░ Contact ░░░ -->
   <section class="contact" id="contact">
@@ -246,81 +247,50 @@
   <!-- ░░░ Scripts ░░░ -->
   <script>
   <script>
-    // קוד מקורי שעובד
-    document.addEventListener('DOMContentLoaded', function() {
-      // המלצות
-      var testimonials = document.querySelectorAll('.testimonial');
-      var currentIndex = 0;
-      
-      // פונקציה להחלפת המלצות
-      function rotateTestimonials() {
-        // וודא שכל ההמלצות מוסתרות
-        for (var i = 0; i < testimonials.length; i++) {
-          testimonials[i].classList.remove('active');
-        }
-        
-        // הצג רק את ההמלצה הנוכחית
-        testimonials[currentIndex].classList.add('active');
-        
-        // התקדם למספר הבא
-        currentIndex = (currentIndex + 1) % testimonials.length;
-      }
-      
-      // הצג את ההמלצה הראשונה מיד
-      rotateTestimonials();
-      
-      // הפעל את הפונקציה כל 5 שניות
-      window.testimonialInterval = setInterval(rotateTestimonials, 5000);
-      
-      // טופס יצירת קשר
-      var form = document.getElementById('contact-form');
-      var msg = document.getElementById('success-msg');
-      
-      if (form && msg) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var data = new FormData(form);
-          
-          fetch('https://formsubmit.co/ajax/mailotgroup@gmail.com', {
-            method: 'POST',
-            body: data
-          })
-          .then(function() {
-            form.reset();
-            msg.style.display = 'block';
-            setTimeout(function() {
-              msg.style.display = 'none';
-            }, 5000);
-          })
-          .catch(function(error) {
-            console.error('Error submitting form:', error);
-          });
-        });
-      }
-      
-      // תפריט נייד
-      var menuToggle = document.getElementById('menu-toggle');
-      var menu = document.getElementById('menu');
-      var overlay = document.getElementById('overlay');
-      
-      if (menuToggle && menu && overlay) {
-        menuToggle.addEventListener('click', function() {
-          menu.classList.toggle('active');
-          overlay.classList.toggle('active');
-        });
-        
-        overlay.addEventListener('click', function() {
-          menu.classList.remove('active');
-          overlay.classList.remove('active');
-        });
-        
-        var navLinks = document.querySelectorAll('nav a');
-        for (var i = 0; i < navLinks.length; i++) {
-          navLinks[i].addEventListener('click', function() {
-            menu.classList.remove('active');
-            overlay.classList.remove('active');
-          });
-        }
+    /* Testimonials rotator - גרסה קודמת שעובדת */
+    const testimonials = document.querySelectorAll('.testimonial');
+    let tIndex = 0;
+    setInterval(() => {
+      testimonials[tIndex].classList.remove('active');
+      tIndex = (tIndex + 1) % testimonials.length;
+      testimonials[tIndex].classList.add('active');
+    }, 5000);
+    
+    /* תפריט נייד פשוט */
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    const overlay = document.getElementById('overlay');
+    
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+    
+    overlay.addEventListener('click', () => {
+      menu.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+    
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+      });
+    });
+    
+    /* טופס יצירת קשר */
+    const form = document.getElementById('contact-form');
+    const msg = document.getElementById('success-msg');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        await fetch('https://formsubmit.co/ajax/mailotgroup@gmail.com', {method: 'POST', body: data});
+        form.reset();
+        msg.style.display = 'block';
+        setTimeout(() => { msg.style.display = 'none'; }, 5000);
+      } catch (error) {
+        console.error('Error submitting form:', error);
       }
     });
   </script>

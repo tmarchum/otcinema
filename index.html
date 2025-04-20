@@ -12,11 +12,32 @@
       // בדיקה אם יש הודעת תודה בכתובת
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('thankyou') === 'true') {
-        document.getElementById('success-msg').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('success-msg').style.display = 'none';
-        }, 5000);
+        const successMsg = document.getElementById('success-msg');
+        if (successMsg) {
+          successMsg.style.display = 'block';
+          
+          // גלילה לאזור ההודעה אם יש צורך
+          const contactSection = document.getElementById('contact');
+          if (contactSection && !isElementInViewport(successMsg)) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+          }
+          
+          setTimeout(() => {
+            successMsg.style.display = 'none';
+          }, 5000);
+        }
       }
+    }
+    
+    // פונקציה לבדיקה אם אלמנט נראה במסך
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
     }
     
     // תפריט נייד
@@ -285,7 +306,7 @@
       <p><strong>טלפון:</strong> <span dir="ltr"><a href="tel:+972542070020">054‑207‑0020</a></span><br>
         <strong>דוא״ל:</strong> <a href="mailto:mailotgroup@gmail.com">mailotgroup@gmail.com</a></p>
       <form id="contact-form" action="https://formsubmit.co/mailotgroup@gmail.com" method="POST">
-        <input type="hidden" name="_next" value="https://tmarchum.github.io/otcinema/?thankyou=true">
+        <input type="hidden" name="_next" value="https://tmarchum.github.io/otcinema/?thankyou=true#contact">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="name" placeholder="שם מלא" required />
         <input type="email" name="email" placeholder="דוא&quot;ל" required />

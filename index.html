@@ -51,8 +51,27 @@
     }
     
     /* ─── Hero ─── */
-    .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden}
-    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;background:var(--primary)}
+    .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden;background:var(--primary)} /* הוספת רקע לגיבוי */
+    .hero video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain; /* שינוי מ-cover ל-contain להצגת כל הוידאו */
+      z-index:-2;
+      background:var(--primary)
+    }
+    
+    /* תיקון לרספונסיביות סרטון בנייד */
+    @media (max-width: 768px) {
+      .hero video {
+        width: 200%; /* גודל גדול יותר */
+        height: 200%;
+        object-position: center; /* מיקום במרכז */
+        transform: scale(0.75); /* הקטנה לראיית התמונה המלאה */
+        transform-origin: center center;
+      }
+    }
     .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.35);z-index:-1}
     .hero-title{font-size:3rem;margin-bottom:10px;text-shadow:0 2px 6px rgba(0,0,0,.4);width:100%;padding:0 10px;box-sizing:border-box}
     .hero-sub{font-size:1.25rem;margin-bottom:30px;text-shadow:0 1px 4px rgba(0,0,0,.4);width:100%;padding:0 15px;box-sizing:border-box}
@@ -63,7 +82,7 @@
     .logo{
       position: absolute;
       top: 20px;
-      right: 20px;
+      left: 20px; /* שינוי מימין לשמאל */
       width: 120px;
       height: auto;
       z-index: 10;
@@ -72,7 +91,7 @@
       .logo {
         width: 80px;
         top: 15px;
-        right: 15px;
+        left: 15px; /* שינוי מימין לשמאל */
       }
     }
     
@@ -219,6 +238,7 @@
   <footer>© 2025 הקולנוע הנודד | אתר בעיצוב ChatGPT</footer>
   <!-- ░░░ Scripts ░░░ -->
   <script>
+  <script>
     /* בדיקת תמיכה בוידאו */
     document.addEventListener('DOMContentLoaded', function() {
       const video = document.querySelector('video');
@@ -228,6 +248,20 @@
       if (video) {
         video.addEventListener('loadeddata', function() {
           console.log('וידאו נטען בהצלחה');
+          
+          // התאמת הוידאו למסך בנייד
+          function adjustVideoSize() {
+            if (window.innerWidth <= 768) {
+              // בנייד אנחנו רוצים לראות את הסרטון במלואו
+              video.style.objectFit = 'contain';
+              video.style.width = '100%';
+              video.style.height = '100%';
+            }
+          }
+          
+          // הפעלת הפונקציה בטעינה ובשינוי גודל חלון
+          adjustVideoSize();
+          window.addEventListener('resize', adjustVideoSize);
         });
         
         video.addEventListener('error', function() {

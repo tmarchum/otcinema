@@ -56,19 +56,23 @@
       position:absolute;
       inset:0;
       width:100%;
-      height:100%;
-      object-fit:cover; /* חזרה ל-cover */
+      height:auto; /* שינוי מ-100% ל-auto לשמירה על יחס התצוגה */
+      max-height: 100%; /* מגביל את הגובה למקסימום 100% */
+      margin: auto; /* מרכוז אוטומטי אנכי ואופקי */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      object-fit:contain; /* חזרה ל-contain כדי להציג את כל התוכן */
       z-index:-2;
       background:var(--primary)
     }
     
-    /* תיקון לרספונסיביות סרטון בנייד - חזרה להגדרות הבסיסיות */
     @media (max-width: 768px) {
       .hero video {
-        object-fit:cover; /* חזרה ל-cover במובייל */
-        width:100%;
-        height:100%;
-        transform: none;
+        width: auto; /* רוחב אוטומטי במובייל */
+        height: 100%; /* גובה 100% במובייל */
+        max-width: 100%; /* הגבלת הרוחב ל-100% */
       }
     }
     .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.35);z-index:-1}

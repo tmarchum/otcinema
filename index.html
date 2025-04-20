@@ -19,7 +19,7 @@
   <style>
     :root{--primary:#0d47a1;--accent:#ffb300;--text:#222;--bg:#fff;--light:#f5f5f5}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:"Alef",sans-serif;color:var(--text);background:var(--bg)}
+    body{margin:0;font-family:"Alef",sans-serif;color:var(--text);background:var(--bg);font-size:18px;line-height:1.6}
     h1,h2,h3,h4{font-family:"Heebo",sans-serif;margin:0}
     section{padding:60px 20px}
     .container{max-width:1100px;margin:0 auto;width:94%;box-sizing:border-box}
@@ -234,8 +234,9 @@
       <div class="success-msg" id="success-msg">תודה על פנייתך! נחזור אליך בהקדם.</div>
     </div>
   </section>
-  <footer>© 2025 הקולנוע הנודד | אתר בעיצוב ChatGPT</footer>
+  <footer>© 2025 הקולנוע הנודד</footer>
   <!-- ░░░ Scripts ░░░ -->
+  <script>
   <script>
   <script>
     /* בדיקת תמיכה בוידאו */
@@ -243,17 +244,28 @@
       const video = document.querySelector('video');
       const heroSection = document.querySelector('.hero');
       
-      // בדיקה אם הוידאו יכול להיות מופעל
+      // בדיקה אם יש תג וידאו
       if (video) {
+        // נסיון לתקן את בעיית הוידאו כללית
+        video.style.display = 'block'; // וידוא שהוידאו מוצג
+        
         video.addEventListener('loadeddata', function() {
           console.log('וידאו נטען בהצלחה');
         });
         
-        video.addEventListener('error', function() {
-          console.log('שגיאה בטעינת הוידאו - מעבר לתמונת רקע');
+        video.addEventListener('error', function(e) {
+          console.log('שגיאה בטעינת הוידאו - מעבר לתמונת רקע', e);
           heroSection.style.background = 'var(--primary) url("hero.jpg") center/cover no-repeat';
           video.style.display = 'none';
         });
+        
+        // אכיפת טעינה מחדש של הוידאו
+        const src = video.querySelector('source').src;
+        video.querySelector('source').src = '';
+        setTimeout(function() {
+          video.querySelector('source').src = src;
+          video.load();
+        }, 100);
       }
       
       // תיקון למובייל - בדיקה אם המכשיר הוא נייד

@@ -57,19 +57,18 @@
       inset:0;
       width:100%;
       height:100%;
-      object-fit:contain; /* שינוי מ-cover ל-contain להצגת כל הוידאו */
+      object-fit:cover; /* חזרה ל-cover */
       z-index:-2;
       background:var(--primary)
     }
     
-    /* תיקון לרספונסיביות סרטון בנייד */
+    /* תיקון לרספונסיביות סרטון בנייד - חזרה להגדרות הבסיסיות */
     @media (max-width: 768px) {
       .hero video {
-        width: 200%; /* גודל גדול יותר */
-        height: 200%;
-        object-position: center; /* מיקום במרכז */
-        transform: scale(0.75); /* הקטנה לראיית התמונה המלאה */
-        transform-origin: center center;
+        object-fit:cover; /* חזרה ל-cover במובייל */
+        width:100%;
+        height:100%;
+        transform: none;
       }
     }
     .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.35);z-index:-1}
@@ -248,20 +247,6 @@
       if (video) {
         video.addEventListener('loadeddata', function() {
           console.log('וידאו נטען בהצלחה');
-          
-          // התאמת הוידאו למסך בנייד
-          function adjustVideoSize() {
-            if (window.innerWidth <= 768) {
-              // בנייד אנחנו רוצים לראות את הסרטון במלואו
-              video.style.objectFit = 'contain';
-              video.style.width = '100%';
-              video.style.height = '100%';
-            }
-          }
-          
-          // הפעלת הפונקציה בטעינה ובשינוי גודל חלון
-          adjustVideoSize();
-          window.addEventListener('resize', adjustVideoSize);
         });
         
         video.addEventListener('error', function() {

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>הקולנוע הנודד | חוויית סרט חוץ</title>
-  <meta name="description" content="הקולנוע הנודד – הופכים כל מרחב למסך ענק עם מסך מתנפח, מקרן והגברה מקצועית בכל מקום." />
+  <title>הקולנוע הנודד | חוויית סרט חוץ בלתי נשכחת!</title>
+  <meta name="description" content="הקולנוע הנודד – הופכים כל מרחב למסך קולנוע ענק עם מסך מתנפח, מקרן והגברה מקצועית באיכות בלתי מתפשרת." />
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&family=Alef:wght@400;700&display=swap" rel="stylesheet" />
   <!-- Google Analytics (בטל הערות והכנס ID אם יש) -->
   <!--
@@ -51,26 +51,8 @@
     }
     
     /* ─── Hero ─── */
-    .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden;background:var(--primary)} /* הוספת רקע לגיבוי */
-    .hero video{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover; /* חזרה ל-cover */
-      z-index:-2;
-      background:var(--primary)
-    }
-    
-    /* תיקון לרספונסיביות סרטון בנייד - חזרה להגדרות הבסיסיות */
-    @media (max-width: 768px) {
-      .hero video {
-        object-fit:cover; /* חזרה ל-cover במובייל */
-        width:100%;
-        height:100%;
-        transform: none;
-      }
-    }
+    .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden}
+    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
     .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.35);z-index:-1}
     .hero-title{font-size:3rem;margin-bottom:10px;text-shadow:0 2px 6px rgba(0,0,0,.4);width:100%;padding:0 10px;box-sizing:border-box}
     .hero-sub{font-size:1.25rem;margin-bottom:30px;text-shadow:0 1px 4px rgba(0,0,0,.4);width:100%;padding:0 15px;box-sizing:border-box}
@@ -81,7 +63,7 @@
     .logo{
       position: absolute;
       top: 20px;
-      left: 20px; /* שינוי מימין לשמאל */
+      left: 20px;
       width: 120px;
       height: auto;
       z-index: 10;
@@ -90,7 +72,7 @@
       .logo {
         width: 80px;
         top: 15px;
-        left: 15px; /* שינוי מימין לשמאל */
+        left: 15px;
       }
     }
     
@@ -151,62 +133,62 @@
   <!-- ░░░ Hero ░░░ -->
   <header class="hero" id="home">
     <img src="logo.png" alt="הקולנוע הנודד - לוגו" class="logo">
-    <video autoplay muted loop playsinline preload="auto" poster="hero.jpg">
+    <video autoplay muted loop playsinline poster="hero.jpg">
       <source src="promo.mp4" type="video/mp4">
     </video>
     <h1 class="hero-title">הקולנוע הנודד</h1>
-    <p class="hero-sub">הופכים כל מרחב למסך ענק!</p>
-    <a href="#contact" class="button">להזמנת הקרנה </a>
+    <p class="hero-sub">קולנוע ענק שיגיע אליכם לכל מקום!</p>
+    <a href="#contact" class="button">להזמנת הקרנה מושלמת</a>
   </header>
   <!-- ░░░ About ░░░ -->
   <section class="container" id="about">
-    <h2 class="section-title">קצת עלינו</h2>
-    <p>אנחנו צוות חובבי קולנוע שמביא את חוויית המסך הגדול לכל מקום בארץ. עם מסך מתנפח בגודל 5×4 מטר, מקרן Full‑HD והגברה מקצועית, אנו מספקים אירוע "Plug & Play" לרשויות, עיריות, מתנ״סים, בתי‑ספר וחברות.</p>
+    <h2 class="section-title">קסם הקולנוע הנייד שלנו</h2>
+    <p>ברוכים הבאים לחוויה הקולנועית המרהיבה של <strong>הקולנוע הנודד</strong>! אנו מביאים את קסם המסך הגדול אל כל פינה בארץ עם מסך מתנפח ענק בגודל 5×4 מטר, מקרן Full‑HD עוצמתי והגברה מקצועית ברמה הגבוהה ביותר. השירות שלנו הוא Plug & Play מושלם לרשויות, עיריות, מתנ״סים, בתי‑ספר, חברות ואירועים פרטיים - אנחנו דואגים לכל הפרטים, אתם רק נהנים מהקסם!</p>
   </section>
   <!-- ░░░ Advantages ░░░ -->
   <section class="container" id="advantages">
-    <h2 class="section-title">למה דווקא אנחנו?</h2>
+    <h2 class="section-title">למה הקולנוע הנודד שלנו הוא המוביל בתחום?</h2>
     <div class="grid grid-4">
-      <div class="card"><div class="icon">💎</div><h3>איכות בלתי מתפשרת</h3><p>מקרן HD עוצמתי, מסך ענק והגברה חדה עד 250 איש.</p></div>
-      <div class="card"><div class="icon">⚡</div><h3>הקמה מהירה</h3><p>תוך שעה המסך באוויר.</p></div>
-      <div class="card"><div class="icon">🎁</div><h3>שירות מלא</h3><p>כבלים, ציוד הגברה, כולל הקרנה אחורית.</p></div>
-      <div class="card"><div class="icon">📋</div><h3>מותאם לרשויות</h3><p>ביטוח, חשבוניות, אישור חשמל ומפיצים מורשים.</p></div>
+      <div class="card"><div class="icon">💎</div><h3>איכות בלתי מתפשרת</h3><p>תמונה חדה כתער, מקרן HD מקצועי, מסך ענק והגברה מדהימה לקהל של עד 250 איש.</p></div>
+      <div class="card"><div class="icon">⚡</div><h3>הקמה מהירה ויעילה</h3><p>תוך שעה בלבד המסך באוויר והקסם מוכן להתחיל!</p></div>
+      <div class="card"><div class="icon">🎁</div><h3>שירות מלא ומושלם</h3><p>הכל כלול - כבלים, ציוד הגברה מתקדם, כולל הקרנה אחורית איכותית.</p></div>
+      <div class="card"><div class="icon">📋</div><h3>מאושר לכל הרשויות</h3><p>ביטוח מלא, חשבוניות מסודרות, אישור חשמל ועבודה עם מפיצים מורשים בלבד.</p></div>
     </div>
   </section>
   <!-- ░░░ Services ░░░ -->
   <section class="container" id="services">
-    <h2 class="section-title">חבילות ההקרנה</h2>
+    <h2 class="section-title">חבילות הקרנה מושלמות לכל מטרה</h2>
     <ul>
-      <li><strong>ערב קהילתי קלאסי</strong> – עד 300 צופים על מחצלות.</li>
-      <li><strong>Drive‑In רטרו</strong> – שידור FM לרכב, אווירת שנות 50.</li>
-      <li><strong>אירועי חברה</strong> – הקרנה + מצגת ומיתוג.</li>
-      <li><strong>VIP לספא/בריכה</strong> – מסך מעל המים וחוויית ציפה.</li>
+      <li><strong>ערב קהילתי קסום</strong> – חוויה מרגשת לקהל של עד 300 צופים על מחצלות תחת כיפת השמיים.</li>
+      <li><strong>Drive‑In נוסטלגי</strong> – חוויה רטרו מרהיבה עם שידור FM לרכבים ואווירה קסומה של שנות ה-50.</li>
+      <li><strong>אירועי חברה יוקרתיים</strong> – הקרנות מרשימות, מצגות מקצועיות ומיתוג מושלם לעסק שלכם.</li>
+      <li><strong>חוויית VIP בספא או בריכה</strong> – קולנוע מעל המים, חוויית ציפה יוקרתית ובלתי נשכחת.</li>
     </ul>
   </section>
   <!-- ░░░ Gallery ░░░ -->
   <section class="container" id="gallery">
-    <h2 class="section-title">גלריה</h2>
+    <h2 class="section-title">גלריית התרשמות מאירועים קודמים</h2>
     <div class="gallery">
-      <img src="outdoor1.jpg" alt="Outdoor cinema" loading="lazy" />
-      <img src="projector.jpg" alt="Projector" loading="lazy" />
-      <img src="drivein.jpg" alt="Drive in" loading="lazy" />
-      <img src="audience.jpg" alt="Audience" loading="lazy" />
+      <img src="outdoor1.jpg" alt="קולנוע חוץ מרהיב" loading="lazy" />
+      <img src="projector.jpg" alt="מקרן איכותי" loading="lazy" />
+      <img src="drivein.jpg" alt="חוויית דרייב-אין" loading="lazy" />
+      <img src="audience.jpg" alt="קהל נהנה" loading="lazy" />
     </div>
   </section>
   <!-- ░░░ Testimonials ░░░ -->
   <section class="container" id="clients">
-    <h2 class="section-title">לקוחות מספרים</h2>
+    <h2 class="section-title">מה הלקוחות המרוצים שלנו אומרים</h2>
     <div id="testimonials">
       <div class="testimonial active">
-        <p>"הקולנוע הנודד הדליק את פארק העירוני – קהל של 250 תושבים נהנה בטירוף!"</p>
+        <p>"הקולנוע הנודד הפך את הפארק העירוני שלנו לחוויה קסומה – קהל של 250 תושבים מכל הגילאים נהנה מערב בלתי נשכח!"</p>
         <span>מחלקת תרבות, עיריית ראשון לציון</span>
       </div>
       <div class="testimonial">
-        <p>"חוויה מקצועית מתחילתה ועד סופה – מסך ענק והפקה ללא דופי."</p>
+        <p>"שירות מקצועי ברמה הגבוהה ביותר מתחילתו ועד סופו – המסך הענק והאיכות המדהימה הפכו את האירוע שלנו להצלחה מסחררת."</p>
         <span>מנהלת אירועים, מועצה אזורית גלבוע</span>
       </div>
       <div class="testimonial">
-        <p>"צוות אדיב, ציוד איכותי והקהל שלנו עף לשמיים! מומלץ בחום."</p>
+        <p>"הצוות המקסים, הציוד המתקדם והאווירה הקסומה שיצרתם היו מושלמים! הלקוחות שלנו עדיין מדברים על החוויה. מומלץ בחום רב!"</p>
         <span>SPA נתניה</span>
       </div>
     </div>
@@ -214,75 +196,29 @@
   <!-- ░░░ FAQ ░░░ -->
   <section class="container" id="faq">
     <h2 class="section-title">שאלות נפוצות</h2>
-    <details><summary>מה אם יורד גשם?</summary><p>נדחה ללא קנס או נעבור לחלל סגור.</p></details>
-    <details><summary>כמה חשמל צריך?</summary><p>שקע 16A חד‑פאזי סטנדרטי.</p></details>
-    <details><summary>אפשר סרט לילדים?</summary><p>בוודאי, רק דרוש אישור הקרנה מתאים.</p></details>
+    <details><summary>מה קורה במקרה של גשם?</summary><p>אנחנו גמישים במיוחד - נוכל לדחות את האירוע ללא קנס או להעביר את ההקרנה לחלל סגור לפי הצורך.</p></details>
+    <details><summary>איזה חיבור חשמל נדרש?</summary><p>נדרש שקע 16A חד‑פאזי סטנדרטי בלבד - פשוט וקל!</p></details>
+    <details><summary>האם ניתן להקרין סרטים לילדים?</summary><p>בהחלט! יש לנו מגוון אפשרויות לאירועי ילדים, רק דרוש אישור הקרנה מתאים מהמפיץ.</p></details>
   </section>
   <!-- ░░░ Contact ░░░ -->
   <section class="contact" id="contact">
     <div class="container">
-      <h2 class="section-title" style="color:#fff">צור קשר</h2>
-      <p>נשמח להפיק לכם ערב סרט בלתי נשכח!</p>
+      <h2 class="section-title" style="color:#fff">צרו קשר עכשיו לחוויה בלתי נשכחת!</h2>
+      <p>מוכנים להעניק לאורחים שלכם חוויית קולנוע מרהיבה שתיזכר לאורך זמן? אנחנו כאן בשבילכם!</p>
       <p><strong>טלפון:</strong> <span dir="ltr"><a href="tel:+972542070020">054‑207‑0020</a></span><br>
         <strong>דוא״ל:</strong> <a href="mailto:mailotgroup@gmail.com">mailotgroup@gmail.com</a></p>
       <form id="contact-form">
         <input type="text" name="name" placeholder="שם מלא" required />
         <input type="email" name="email" placeholder="דוא&quot;ל" required />
-        <textarea name="message" placeholder="הודעה" required></textarea>
-        <button type="submit">שלח הודעה</button>
+        <textarea name="message" placeholder="ספרו לנו על האירוע שלכם" required></textarea>
+        <button type="submit">שליחת בקשה להצעת מחיר</button>
       </form>
-      <div class="success-msg" id="success-msg">תודה על פנייתך! נחזור אליך בהקדם.</div>
+      <div class="success-msg" id="success-msg">תודה על פנייתך! ניצור איתך קשר בהקדם עם הצעה מותאמת אישית.</div>
     </div>
   </section>
   <footer>© 2025 הקולנוע הנודד</footer>
   <!-- ░░░ Scripts ░░░ -->
   <script>
-  <script>
-  <script>
-    /* בדיקת תמיכה בוידאו */
-    document.addEventListener('DOMContentLoaded', function() {
-      const video = document.querySelector('video');
-      const heroSection = document.querySelector('.hero');
-      
-      // בדיקה אם יש תג וידאו
-      if (video) {
-        // נסיון לתקן את בעיית הוידאו כללית
-        video.style.display = 'block'; // וידוא שהוידאו מוצג
-        
-        video.addEventListener('loadeddata', function() {
-          console.log('וידאו נטען בהצלחה');
-        });
-        
-        video.addEventListener('error', function(e) {
-          console.log('שגיאה בטעינת הוידאו - מעבר לתמונת רקע', e);
-          heroSection.style.background = 'var(--primary) url("hero.jpg") center/cover no-repeat';
-          video.style.display = 'none';
-        });
-        
-        // אכיפת טעינה מחדש של הוידאו
-        const src = video.querySelector('source').src;
-        video.querySelector('source').src = '';
-        setTimeout(function() {
-          video.querySelector('source').src = src;
-          video.load();
-        }, 100);
-      }
-      
-      // תיקון למובייל - בדיקה אם המכשיר הוא נייד
-      function isMobile() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-      }
-      
-      if (isMobile() && video) {
-        // נסיון להפעיל את הוידאו בכל זאת
-        video.play().catch(function(error) {
-          console.log('לא ניתן להפעיל וידאו במובייל - מעבר לתמונת רקע:', error);
-          heroSection.style.background = 'var(--primary) url("hero.jpg") center/cover no-repeat';
-          video.style.display = 'none';
-        });
-      }
-    });
-
     /* Testimonials rotator */
     const testimonials=document.querySelectorAll('.testimonial');
     let tIndex=0;

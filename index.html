@@ -99,10 +99,10 @@
     .gallery img{width:100%;height:200px;object-fit:cover;border-radius:6px}
     
     /* ─── Testimonials ─── */
-    #testimonials{position:relative;min-height:180px} /* הגדלת הגובה המינימלי */
+    #testimonials{position:relative;min-height:160px}
     .testimonial{position:absolute;inset:0;opacity:0;transition:opacity .8s ease-in-out;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 20px}
     .testimonial.active{opacity:1}
-    .testimonial p{font-style:italic;margin-bottom:15px;font-size:1.05rem} /* הגדלת הטקסט ומרווח תחתון */
+    .testimonial p{font-style:italic;margin-bottom:10px}
     .testimonial span{font-weight:700;color:var(--primary)}
     
     /* ─── FAQ & Contact ─── */
@@ -171,9 +171,9 @@
   </section>
   <!-- ░░░ Gallery ░░░ -->
   <section class="container" id="gallery">
-    <h2 class="section-title">גלריית התרשמות מאירועים קודמים</h2>
+    <h2 class="section-title">גלריית תמונות</h2>
     <div class="gallery">
-      <img src="outdoor1.jpg" alt="קולנוע חוץ מרהיב" loading="lazy" />
+      <img src="outdoor1.jpg" alt="קולנוע חוץ" loading="lazy" />
       <img src="projector.jpg" alt="מקרן איכותי" loading="lazy" />
       <img src="drivein.jpg" alt="חוויית דרייב-אין" loading="lazy" />
       <img src="audience.jpg" alt="קהל נהנה" loading="lazy" />
@@ -221,8 +221,10 @@
   <section class="container" id="faq">
     <h2 class="section-title">שאלות נפוצות</h2>
     <details><summary>מה קורה במקרה של גשם?</summary><p>אנחנו גמישים במיוחד - נוכל לדחות את האירוע ללא קנס או להעביר את ההקרנה לחלל סגור לפי הצורך.</p></details>
-    <details><summary>איזה חיבור חשמל נדרש?</summary><p>נדרש שקע 16A חד‑פאזי סטנדרטי בלבד - פשוט וקל!</p></details>
+    <details><summary>איזה חיבור חשמל נדרש?</summary><p>נדרש חיבור חשמל רגיל בלבד - פשוט וקל!</p></details>
     <details><summary>האם ניתן להקרין סרטים לילדים?</summary><p>בהחלט! יש לנו מגוון אפשרויות לאירועי ילדים, רק דרוש אישור הקרנה מתאים מהמפיץ.</p></details>
+    <details><summary>האם יש לכם אישור הקרנה?</summary><p>כן, אנחנו מפיצים מורשים ועובדים אך ורק עם אישורי הקרנה חוקיים.</p></details>
+    <details><summary>אילו סרטים ניתן להקרין?</summary><p>כל סרט המאושר על ידי המפיצים - מסרטי ילדים ועד להיטים למבוגרים, בהתאם לאישורי ההקרנה.</p></details>
   </section>
   <!-- ░░░ Contact ░░░ -->
   <section class="contact" id="contact">
@@ -244,66 +246,31 @@
   <!-- ░░░ Scripts ░░░ -->
   <script>
   <script>
-    // קוד פשוט להחלפת המלצות
+    // קוד מקורי שעובד
     document.addEventListener('DOMContentLoaded', function() {
       // המלצות
       var testimonials = document.querySelectorAll('.testimonial');
       var currentIndex = 0;
       
-      // ודא שרק ההמלצה הראשונה מוצגת בהתחלה
-      for (var i = 0; i < testimonials.length; i++) {
-        if (i === 0) {
-          testimonials[i].classList.add('active');
-        } else {
-          testimonials[i].classList.remove('active');
-        }
-      }
-      
       // פונקציה להחלפת המלצות
       function rotateTestimonials() {
-        // הסר את הקלאס מההמלצה הנוכחית
-        testimonials[currentIndex].classList.remove('active');
+        // וודא שכל ההמלצות מוסתרות
+        for (var i = 0; i < testimonials.length; i++) {
+          testimonials[i].classList.remove('active');
+        }
         
-        // התקדם להמלצה הבאה
-        currentIndex = (currentIndex + 1) % testimonials.length;
-        
-        // הוסף קלאס להמלצה החדשה
+        // הצג רק את ההמלצה הנוכחית
         testimonials[currentIndex].classList.add('active');
+        
+        // התקדם למספר הבא
+        currentIndex = (currentIndex + 1) % testimonials.length;
       }
+      
+      // הצג את ההמלצה הראשונה מיד
+      rotateTestimonials();
       
       // הפעל את הפונקציה כל 5 שניות
-      setInterval(rotateTestimonials, 5000);
-      
-      // וידאו
-      var video = document.querySelector('video');
-      if (video) {
-        video.style.display = 'block';
-      }
-      
-      // תפריט נייד
-      var menuToggle = document.getElementById('menu-toggle');
-      var menu = document.getElementById('menu');
-      var overlay = document.getElementById('overlay');
-      
-      if (menuToggle && menu && overlay) {
-        menuToggle.addEventListener('click', function() {
-          menu.classList.toggle('active');
-          overlay.classList.toggle('active');
-        });
-        
-        overlay.addEventListener('click', function() {
-          menu.classList.remove('active');
-          overlay.classList.remove('active');
-        });
-        
-        var navLinks = document.querySelectorAll('nav a');
-        for (var i = 0; i < navLinks.length; i++) {
-          navLinks[i].addEventListener('click', function() {
-            menu.classList.remove('active');
-            overlay.classList.remove('active');
-          });
-        }
-      }
+      window.testimonialInterval = setInterval(rotateTestimonials, 5000);
       
       // טופס יצירת קשר
       var form = document.getElementById('contact-form');
@@ -329,6 +296,31 @@
             console.error('Error submitting form:', error);
           });
         });
+      }
+      
+      // תפריט נייד
+      var menuToggle = document.getElementById('menu-toggle');
+      var menu = document.getElementById('menu');
+      var overlay = document.getElementById('overlay');
+      
+      if (menuToggle && menu && overlay) {
+        menuToggle.addEventListener('click', function() {
+          menu.classList.toggle('active');
+          overlay.classList.toggle('active');
+        });
+        
+        overlay.addEventListener('click', function() {
+          menu.classList.remove('active');
+          overlay.classList.remove('active');
+        });
+        
+        var navLinks = document.querySelectorAll('nav a');
+        for (var i = 0; i < navLinks.length; i++) {
+          navLinks[i].addEventListener('click', function() {
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+          });
+        }
       }
     });
   </script>

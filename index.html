@@ -52,7 +52,20 @@
     
     /* ─── Hero ─── */
     .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden}
-    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;background:var(--primary)}
+    .hero video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain; /* שינוי מ-cover ל-contain כדי להציג את כל הוידאו */
+      z-index:-2;
+      background:var(--primary)
+    }
+    @media (max-width: 768px) {
+      .hero video {
+        object-position: center center; /* מרכוז הוידאו במכשירים ניידים */
+      }
+    }
     .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.25);z-index:-1}
     .hero-title{font-size:3rem;margin-bottom:10px;text-shadow:0 2px 6px rgba(0,0,0,.4);width:100%;padding:0 10px;box-sizing:border-box}
     .hero-sub{font-size:1.25rem;margin-bottom:30px;text-shadow:0 1px 4px rgba(0,0,0,.4);width:100%;padding:0 15px;box-sizing:border-box}
@@ -208,13 +221,50 @@
   <footer>© 2025 הקולנוע הנודד | אתר בעיצוב ChatGPT</footer>
   <!-- ░░░ Scripts ░░░ -->
   <script>
-    /* בדיקת תמיכה בוידאו */
+    /* בדיקת תמיכה בוידאו והתאמת גודל */
     document.addEventListener('DOMContentLoaded', function() {
       const video = document.querySelector('video');
       const heroSection = document.querySelector('.hero');
       
       // בדיקה אם הוידאו יכול להיות מופעל
       if (video) {
+        // התאמת גודל הוידאו
+        function adjustVideoSize() {
+          // בדיקת יחס הגובה-רוחב של המסך
+          const screenRatio = window.innerWidth / window.innerHeight;
+          // בדיקת יחס הגובה-רוחב של הוידאו (אם יש לנו מידע על הממדים שלו)
+          let videoRatio = 16/9; // ברירת מחדל - יחס נפוץ
+          
+          if (video.videoWidth && video.videoHeight) {
+            videoRatio = video.videoWidth / video.videoHeight;
+          }
+          
+          // אם יחס המסך שונה מיחס הוידאו, נתאים את סגנון התצוגה
+          if (Math.abs(screenRatio - videoRatio) > 0.1) {
+            if (screenRatio > videoRatio) {
+              // המסך רחב יותר מהוידאו - נשתמש ב-width: 100%
+              video.style.width = '100%';
+              video.style.height = 'auto';
+              video.style.objectFit = 'contain';
+            } else {
+              // המסך צר יותר מהוידאו - נשתמש ב-height: 100%
+              video.style.width = 'auto';
+              video.style.height = '100%';
+              video.style.objectFit = 'contain';
+            }
+          } else {
+            // היחסים דומים מספיק - נשתמש בכיסוי מלא
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.objectFit = 'contain';
+          }
+        }
+        
+        // ביצוע התאמת גודל בטעינה ובשינוי גודל החלון
+        video.addEventListener('loadedmetadata', adjustVideoSize);
+        window.addEventListener('resize', adjustVideoSize);
+        adjustVideoSize(); // ביצוע ראשוני
+        
         video.addEventListener('loadeddata', function() {
           console.log('וידאו נטען בהצלחה');
         });

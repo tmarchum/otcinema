@@ -1,201 +1,201 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>הקולנוע הנודד | חוויית סרט חוץ</title>
-  <meta name="description" content="הקולנוע הנודד – הופכים כל מרחב למסך ענק עם מסך מתנפח, מקרן והגברה מקצועית בכל מקום." />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&family=Alef:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>הקולנוע הנודד | חוויית סרט חוץ</title>
+  <meta name="description" content="הקולנוע הנודד – הופכים כל מרחב למסך ענק עם מסך מתנפח, מקרן והגברה מקצועית בכל מקום." />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&family=Alef:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics (בטל הערות והכנס ID אם יש) -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config','G-XXXXXXXXXX');
-  </script>
-  -->
+  <!-- Google Analytics (בטל הערות והכנס ID אם יש) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config','G-XXXXXXXXXX');
+  </script>
+  -->
 
-  <style>
-    :root{--primary:#0d47a1;--accent:#ffb300;--text:#222;--bg:#fff;--light:#f5f5f5}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:"Alef",sans-serif;color:var(--text);background:var(--bg)}
-    h1,h2,h3,h4{font-family:"Heebo",sans-serif;margin:0}
-    section{padding:60px 20px}
-    .container{max-width:1100px;margin:auto}
+  <style>
+    :root{--primary:#0d47a1;--accent:#ffb300;--text:#222;--bg:#fff;--light:#f5f5f5}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Alef",sans-serif;color:var(--text);background:var(--bg)}
+    h1,h2,h3,h4{font-family:"Heebo",sans-serif;margin:0}
+    section{padding:60px 20px}
+    .container{max-width:1100px;margin:auto}
 
-    /* ─── Nav ─── */
-    nav{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);z-index:1000}
-    nav ul{list-style:none;margin:0;padding:10px 20px;display:flex;gap:20px;justify-content:center}
-    nav a{color:var(--primary);text-decoration:none;font-weight:700;transition:.25s}
-    nav a:hover{color:var(--accent)}
+    /* ─── Nav ─── */
+    nav{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);z-index:1000}
+    nav ul{list-style:none;margin:0;padding:10px 20px;display:flex;gap:20px;justify-content:center}
+    nav a{color:var(--primary);text-decoration:none;font-weight:700;transition:.25s}
+    nav a:hover{color:var(--accent)}
 
-    /* ─── Hero ─── */
-    .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden}
-    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-    .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.25);z-index:-1}
-    .hero-title{font-size:3rem;margin-bottom:10px;text-shadow:0 2px 6px rgba(0,0,0,.4)}
-    .hero-sub{font-size:1.25rem;margin-bottom:30px;text-shadow:0 1px 4px rgba(0,0,0,.4)}
-    .button{display:inline-block;padding:14px 32px;background:var(--accent);color:#fff;font-weight:700;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:.2s}
-    .button:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+    /* ─── Hero ─── */
+    .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden}
+    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+    .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.25);z-index:-1}
+    .hero-title{font-size:3rem;margin-bottom:10px;text-shadow:0 2px 6px rgba(0,0,0,.4)}
+    .hero-sub{font-size:1.25rem;margin-bottom:30px;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+    .button{display:inline-block;padding:14px 32px;background:var(--accent);color:#fff;font-weight:700;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:.2s}
+    .button:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.35)}
 
-    /* ─── Sections ─── */
-    .section-title{color:var(--primary);margin-bottom:20px;font-size:2.1rem}
-    .grid{display:grid;gap:40px}
-    .grid-4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-    .card{background:var(--light);padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1);text-align:center}
-    .icon{font-size:40px;margin-bottom:10px;color:var(--accent)}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
-    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:6px}
+    /* ─── Sections ─── */
+    .section-title{color:var(--primary);margin-bottom:20px;font-size:2.1rem}
+    .grid{display:grid;gap:40px}
+    .grid-4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+    .card{background:var(--light);padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1);text-align:center}
+    .icon{font-size:40px;margin-bottom:10px;color:var(--accent)}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:6px}
 
-    /* ─── Testimonials ─── */
-    #testimonials{position:relative;min-height:160px}
-    .testimonial{position:absolute;inset:0;opacity:0;transition:opacity .8s ease-in-out;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 20px}
-    .testimonial.active{opacity:1}
-    .testimonial p{font-style:italic;margin-bottom:10px}
-    .testimonial span{font-weight:700;color:var(--primary)}
+    /* ─── Testimonials ─── */
+    #testimonials{position:relative;min-height:160px}
+    .testimonial{position:absolute;inset:0;opacity:0;transition:opacity .8s ease-in-out;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 20px}
+    .testimonial.active{opacity:1}
+    .testimonial p{font-style:italic;margin-bottom:10px}
+    .testimonial span{font-weight:700;color:var(--primary)}
 
-    /* ─── FAQ & Contact ─── */
-    details{margin-bottom:10px;border:1px solid var(--primary);border-radius:6px;background:#fff;padding:10px}
-    .contact{background:var(--primary);color:#fff;text-align:center}
-    .contact a{color:#fff;text-decoration:underline}
-    form{display:flex;flex-direction:column;gap:12px;max-width:420px;margin:30px auto 0}
-    form input,form textarea{padding:10px;border:none;border-radius:4px;font-family:inherit}
-    form textarea{min-height:120px}
-    form button{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:4px;font-weight:700;cursor:pointer}
-    form button:hover{opacity:.9}
-    .success-msg{display:none;margin-top:20px;font-weight:700;color:#fff}
+    /* ─── FAQ & Contact ─── */
+    details{margin-bottom:10px;border:1px solid var(--primary);border-radius:6px;background:#fff;padding:10px}
+    .contact{background:var(--primary);color:#fff;text-align:center}
+    .contact a{color:#fff;text-decoration:underline}
+    form{display:flex;flex-direction:column;gap:12px;max-width:420px;margin:30px auto 0}
+    form input,form textarea{padding:10px;border:none;border-radius:4px;font-family:inherit}
+    form textarea{min-height:120px}
+    form button{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:4px;font-weight:700;cursor:pointer}
+    form button:hover{opacity:.9}
+    .success-msg{display:none;margin-top:20px;font-weight:700;color:#fff}
 
-    footer{background:#111;color:#fff;text-align:center;padding:20px;font-size:.9rem}
-  </style>
+    footer{background:#111;color:#fff;text-align:center;padding:20px;font-size:.9rem}
+  </style>
 </head>
 <body>
-  <!-- ░░░ Nav ░░░ -->
-  <nav>
-    <ul>
-      <li><a href="#home">בית</a></li>
-      <li><a href="#services">שירותים</a></li>
-      <li><a href="#gallery">גלריה</a></li>
-      <li><a href="#clients">לקוחות</a></li>
-      <li><a href="#contact">צור קשר</a></li>
-    </ul>
-  </nav>
+  <!-- ░░░ Nav ░░░ -->
+  <nav>
+    <ul>
+      <li><a href="#home">בית</a></li>
+      <li><a href="#services">שירותים</a></li>
+      <li><a href="#gallery">גלריה</a></li>
+      <li><a href="#clients">לקוחות</a></li>
+      <li><a href="#contact">צור קשר</a></li>
+    </ul>
+  </nav>
 
-  <!-- ░░░ Hero ░░░ -->
-  <header class="hero" id="home">
-    <video autoplay muted loop playsinline poster="hero.jpg">
-      <source src="promo.mp4" type="video/mp4">
-    </video>
-    <h1 class="hero-title">הקולנוע הנודד</h1>
-    <p class="hero-sub">הופכים כל מרחב למסך ענק!</p>
-    <a href="#contact" class="button">להזמנת הקרנה 🎬</a>
-  </header>
+  <!-- ░░░ Hero ░░░ -->
+  <header class="hero" id="home">
+    <video autoplay muted loop playsinline poster="hero.jpg">
+      <source src="promo.mp4" type="video/mp4">
+    </video>
+    <h1 class="hero-title">הקולנוע הנודד</h1>
+    <p class="hero-sub">הופכים כל מרחב למסך ענק!</p>
+    <a href="#contact" class="button">להזמנת הקרנה </a>
+  </header>
 
-  <!-- ░░░ About ░░░ -->
-  <section class="container" id="about">
-    <h2 class="section-title">קצת עלינו</h2>
-    <p>אנחנו צוות חובבי קולנוע שמביא את חוויית המסך הגדול לכל מקום בארץ. עם מסך מתנפח בגודל 5×4 מטר, מקרן Full‑HD והגברה מקצועית, אנו מספקים אירוע “Plug & Play” לרשויות, עיריות, מתנ״סים, בתי‑ספר וחברות.</p>
-  </section>
+  <!-- ░░░ About ░░░ -->
+  <section class="container" id="about">
+    <h2 class="section-title">קצת עלינו</h2>
+    <p>אנחנו צוות חובבי קולנוע שמביא את חוויית המסך הגדול לכל מקום בארץ. עם מסך מתנפח בגודל 5×4 מטר, מקרן Full‑HD והגברה מקצועית, אנו מספקים אירוע “Plug & Play” לרשויות, עיריות, מתנ״סים, בתי‑ספר וחברות.</p>
+  </section>
 
-  <!-- ░░░ Advantages ░░░ -->
-  <section class="container" id="advantages">
-    <h2 class="section-title">למה דווקא אנחנו?</h2>
-    <div class="grid grid-4">
-      <div class="card"><div class="icon">🏆</div><h3>איכות בלתי מתפשרת</h3><p>מקרן HD עוצמתי, מסך ענק והגברה חדה עד 300 איש.</p></div>
-      <div class="card"><div class="icon">⏱️</div><h3>הקמה מהירה</h3><p>תוך שעה המסך באוויר והכיסאות מסודרים.</p></div>
-      <div class="card"><div class="icon">🛠️</div><h3>All‑Inclusive</h3><p>כבלים, חשמל, כיסאות – אתם לא דואגים לכלום.</p></div>
-      <div class="card"><div class="icon">🏙️</div><h3>מותאם לרשויות</h3><p>ביטוח, חשבוניות ותקני בטיחות מסודרים.</p></div>
-    </div>
-  </section>
+  <!-- ░░░ Advantages ░░░ -->
+  <section class="container" id="advantages">
+    <h2 class="section-title">למה דווקא אנחנו?</h2>
+    <div class="grid grid-4">
+      <div class="card"><div class="icon"> </div><h3>איכות בלתי מתפשרת</h3><p>מקרן HD עוצמתי, מסך ענק והגברה חדה עד 300 איש.</p></div>
+      <div class="card"><div class="icon"> </div><h3>הקמה מהירה</h3><p>תוך שעה המסך באוויר והכיסאות מסודרים.</p></div>
+      <div class="card"><div class="icon"> </div><h3>All‑Inclusive</h3><p>כבלים, חשמל, כיסאות – אתם לא דואגים לכלום.</p></div>
+      <div class="card"><div class="icon"> </div><h3>מותאם לרשויות</h3><p>ביטוח, חשבוניות ותקני בטיחות מסודרים.</p></div>
+    </div>
+  </section>
 
-  <!-- ░░░ Services ░░░ -->
-  <section class="container" id="services">
-    <h2 class="section-title">חבילות ההקרנה</h2>
-    <ul>
-      <li><strong>ערב קהילתי קלאסי</strong> – עד 300 צופים על מחצלות.</li>
-      <li><strong>Drive‑In רטרו</strong> – שידור FM לרכב, אווירת שנות 50.</li>
-      <li><strong>אירועי חברה</strong> – הקרנה + מצגת ומיתוג.</li>
-      <li><strong>VIP לספא/בריכה</strong> – מסך מעל המים וחוויית ציפה.</li>
-    </ul>
-  </section>
+  <!-- ░░░ Services ░░░ -->
+  <section class="container" id="services">
+    <h2 class="section-title">חבילות ההקרנה</h2>
+    <ul>
+      <li><strong>ערב קהילתי קלאסי</strong> – עד 300 צופים על מחצלות.</li>
+      <li><strong>Drive‑In רטרו</strong> – שידור FM לרכב, אווירת שנות 50.</li>
+      <li><strong>אירועי חברה</strong> – הקרנה + מצגת ומיתוג.</li>
+      <li><strong>VIP לספא/בריכה</strong> – מסך מעל המים וחוויית ציפה.</li>
+    </ul>
+  </section>
 
-  <!-- ░░░ Gallery ░░░ -->
-  <section class="container" id="gallery">
-    <h2 class="section-title">גלריה</h2>
-    <div class="gallery">
-      <img src="outdoor1.jpg" alt="Outdoor cinema" />
-      <img src="projector.jpg" alt="Projector" />
-      <img src="drivein.jpg" alt="Drive in" />
-      <img src="audience.jpg" alt="Audience" />
-    </div>
-  </section>
+  <!-- ░░░ Gallery ░░░ -->
+  <section class="container" id="gallery">
+    <h2 class="section-title">גלריה</h2>
+    <div class="gallery">
+      <img src="outdoor1.jpg" alt="Outdoor cinema" />
+      <img src="projector.jpg" alt="Projector" />
+      <img src="drivein.jpg" alt="Drive in" />
+      <img src="audience.jpg" alt="Audience" />
+    </div>
+  </section>
 
-  <!-- ░░░ Testimonials ░░░ -->
-  <section class="container" id="clients">
-    <h2 class="section-title">לקוחות מספרים</h2>
-    <div id="testimonials">
-      <div class="testimonial active">
-        <p>“הקולנוע הנודד הדליק את פארק העירוני – קהל של 250 תושבים נהנה בטירוף!”</p>
-        <span>מחלקת תרבות, עיריית ראשון לציון</span>
-      </div>
-      <div class="testimonial">
-        <p>“חוויה מקצועית מתחילתה ועד סופה – מסך ענק והפקה ללא דופי.”</p>
-        <span>מנהלת אירועים, מועצה אזורית גלבוע</span>
-      </div>
-      <div class="testimonial">
-        <p>“צוות אדיב, ציוד איכותי והקהל שלנו עף לשמיים! מומלץ בחום.”</p>
-        <span>SPA נתניה</span>
-      </div>
-    </div>
-  </section>
+  <!-- ░░░ Testimonials ░░░ -->
+  <section class="container" id="clients">
+    <h2 class="section-title">לקוחות מספרים</h2>
+    <div id="testimonials">
+      <div class="testimonial active">
+        <p>“הקולנוע הנודד הדליק את פארק העירוני – קהל של 250 תושבים נהנה בטירוף!”</p>
+        <span>מחלקת תרבות, עיריית ראשון לציון</span>
+      </div>
+      <div class="testimonial">
+        <p>“חוויה מקצועית מתחילתה ועד סופה – מסך ענק והפקה ללא דופי.”</p>
+        <span>מנהלת אירועים, מועצה אזורית גלבוע</span>
+      </div>
+      <div class="testimonial">
+        <p>“צוות אדיב, ציוד איכותי והקהל שלנו עף לשמיים! מומלץ בחום.”</p>
+        <span>SPA נתניה</span>
+      </div>
+    </div>
+  </section>
 
-  <!-- ░░░ FAQ ░░░ -->
-  <section class="container" id="faq">
-    <h2 class="section-title">שאלות נפוצות</h2>
-    <details><summary>מה אם יורד גשם?</summary><p>נדחה ללא קנס או נעבור לחלל סגור.</p></details>
-    <details><summary>כמה חשמל צריך?</summary><p>שקע 16A חד‑פאזי סטנדרטי.</p></details>
-    <details><summary>אפשר סרט לילדים?</summary><p>בוודאי, רק דרוש אישור הקרנה מתאים.</p></details>
-  </section>
+  <!-- ░░░ FAQ ░░░ -->
+  <section class="container" id="faq">
+    <h2 class="section-title">שאלות נפוצות</h2>
+    <details><summary>מה אם יורד גשם?</summary><p>נדחה ללא קנס או נעבור לחלל סגור.</p></details>
+    <details><summary>כמה חשמל צריך?</summary><p>שקע 16A חד‑פאזי סטנדרטי.</p></details>
+    <details><summary>אפשר סרט לילדים?</summary><p>בוודאי, רק דרוש אישור הקרנה מתאים.</p></details>
+  </section>
 
-  <!-- ░░░ Contact ░░░ -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <h2 class="section-title" style="color:#fff">צור קשר</h2>
-      <p>נשמח להפיק לכם ערב סרט בלתי נשכח!</p>
-      <p><strong>טלפון:</strong> <span dir="ltr"><a href="tel:+972542070020">054‑207‑0020</a></span><br>
-        <strong>דוא״ל:</strong> <a href="mailto:mailotgroup@gmail.com">mailotgroup@gmail.com</a></p>
+  <!-- ░░░ Contact ░░░ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title" style="color:#fff">צור קשר</h2>
+      <p>נשמח להפיק לכם ערב סרט בלתי נשכח!</p>
+      <p><strong>טלפון:</strong> <span dir="ltr"><a href="tel:+972542070020">054‑207‑0020</a></span><br>
+        <strong>דוא״ל:</strong> <a href="mailto:mailotgroup@gmail.com">mailotgroup@gmail.com</a></p>
 
-      <form id="contact-form">
-        <input type="text" name="name" placeholder="שם מלא" required />
-        <input type="email" name="email" placeholder="דוא&quot;ל" required />
-        <textarea name="message" placeholder="הודעה" required></textarea>
-        <button type="submit">שלח הודעה</button>
-      </form>
-      <div class="success-msg" id="success-msg">תודה על פנייתך! נחזור אליך בהקדם.</div>
-    </div>
-  </section>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="שם מלא" required />
+        <input type="email" name="email" placeholder="דוא&quot;ל" required />
+        <textarea name="message" placeholder="הודעה" required></textarea>
+        <button type="submit">שלח הודעה</button>
+      </form>
+      <div class="success-msg" id="success-msg">תודה על פנייתך! נחזור אליך בהקדם.</div>
+    </div>
+  </section>
 
-  <footer>© 2025 הקולנוע הנודד | אתר בעיצוב ChatGPT</footer>
+  <footer>© 2025 הקולנוע הנודד | אתר בעיצוב ChatGPT</footer>
 
-  <!-- ░░░ Scripts ░░░ -->
-  <script>
-    /* Testimonials rotator */
-    const testimonials=document.querySelectorAll('.testimonial');
-    let tIndex=0;
-    setInterval(()=>{testimonials[tIndex].classList.remove('active');tIndex=(tIndex+1)%testimonials.length;testimonials[tIndex].classList.add('active');},5000);
+  <!-- ░░░ Scripts ░░░ -->
+  <script>
+    /* Testimonials rotator */
+    const testimonials=document.querySelectorAll('.testimonial');
+    let tIndex=0;
+    setInterval(()=>{testimonials[tIndex].classList.remove('active');tIndex=(tIndex+1)%testimonials.length;testimonials[tIndex].classList.add('active');},5000);
 
-    /* AJAX form submit (Formsubmit) */
-    const form=document.getElementById('contact-form');
-    const msg=document.getElementById('success-msg');
-    form.addEventListener('submit',async e=>{
-      e.preventDefault();
-      const data=new FormData(form);
-      await fetch('https://formsubmit.co/ajax/mailotgroup@gmail.com',{method:'POST',body:data});
-      form.reset();
-      msg.style.display='block';
-    });
-  </script>
+    /* AJAX form submit (Formsubmit) */
+    const form=document.getElementById('contact-form');
+    const msg=document.getElementById('success-msg');
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const data=new FormData(form);
+      await fetch('https://formsubmit.co/ajax/mailotgroup@gmail.com',{method:'POST',body:data});
+      form.reset();
+      msg.style.display='block';
+    });
+  </script>
 </body>
 </html>

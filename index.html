@@ -244,68 +244,92 @@
   <!-- ░░░ Scripts ░░░ -->
   <script>
   <script>
-    /* בדיקת תמיכה בוידאו */
+    // קוד פשוט להחלפת המלצות
     document.addEventListener('DOMContentLoaded', function() {
-      // טעינת וידאו
-      const video = document.querySelector('video');
+      // המלצות
+      var testimonials = document.querySelectorAll('.testimonial');
+      var currentIndex = 0;
+      
+      // ודא שרק ההמלצה הראשונה מוצגת בהתחלה
+      for (var i = 0; i < testimonials.length; i++) {
+        if (i === 0) {
+          testimonials[i].classList.add('active');
+        } else {
+          testimonials[i].classList.remove('active');
+        }
+      }
+      
+      // פונקציה להחלפת המלצות
+      function rotateTestimonials() {
+        // הסר את הקלאס מההמלצה הנוכחית
+        testimonials[currentIndex].classList.remove('active');
+        
+        // התקדם להמלצה הבאה
+        currentIndex = (currentIndex + 1) % testimonials.length;
+        
+        // הוסף קלאס להמלצה החדשה
+        testimonials[currentIndex].classList.add('active');
+      }
+      
+      // הפעל את הפונקציה כל 5 שניות
+      setInterval(rotateTestimonials, 5000);
+      
+      // וידאו
+      var video = document.querySelector('video');
       if (video) {
         video.style.display = 'block';
       }
       
-      /* Testimonials rotator - מחדש */
-      const testimonials = document.querySelectorAll('.testimonial');
-      let currentIndex = 0;
+      // תפריט נייד
+      var menuToggle = document.getElementById('menu-toggle');
+      var menu = document.getElementById('menu');
+      var overlay = document.getElementById('overlay');
       
-      function showNextTestimonial() {
-        testimonials[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % testimonials.length;
-        testimonials[currentIndex].classList.add('active');
-      }
-      
-      // ודא שההמלצה הראשונה פעילה
-      testimonials.forEach(item => item.classList.remove('active'));
-      testimonials[0].classList.add('active');
-      
-      // הפעל את מחליף ההמלצות כל 5 שניות
-      setInterval(showNextTestimonial, 5000);
-      
-      /* תפריט נייד פשוט */
-      const menuToggle = document.getElementById('menu-toggle');
-      const menu = document.getElementById('menu');
-      const overlay = document.getElementById('overlay');
-      
-      menuToggle.addEventListener('click', () => {
-        menu.classList.toggle('active');
-        overlay.classList.toggle('active');
-      });
-      
-      overlay.addEventListener('click', () => {
-        menu.classList.remove('active');
-        overlay.classList.remove('active');
-      });
-      
-      document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', () => {
+      if (menuToggle && menu && overlay) {
+        menuToggle.addEventListener('click', function() {
+          menu.classList.toggle('active');
+          overlay.classList.toggle('active');
+        });
+        
+        overlay.addEventListener('click', function() {
           menu.classList.remove('active');
           overlay.classList.remove('active');
         });
-      });
-      
-      /* טופס יצירת קשר */
-      const form = document.getElementById('contact-form');
-      const msg = document.getElementById('success-msg');
-      form.addEventListener('submit', async e => {
-        e.preventDefault();
-        const data = new FormData(form);
-        try {
-          await fetch('https://formsubmit.co/ajax/mailotgroup@gmail.com', {method: 'POST', body: data});
-          form.reset();
-          msg.style.display = 'block';
-          setTimeout(() => { msg.style.display = 'none'; }, 5000);
-        } catch (error) {
-          console.error('Error submitting form:', error);
+        
+        var navLinks = document.querySelectorAll('nav a');
+        for (var i = 0; i < navLinks.length; i++) {
+          navLinks[i].addEventListener('click', function() {
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+          });
         }
-      });
+      }
+      
+      // טופס יצירת קשר
+      var form = document.getElementById('contact-form');
+      var msg = document.getElementById('success-msg');
+      
+      if (form && msg) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var data = new FormData(form);
+          
+          fetch('https://formsubmit.co/ajax/mailotgroup@gmail.com', {
+            method: 'POST',
+            body: data
+          })
+          .then(function() {
+            form.reset();
+            msg.style.display = 'block';
+            setTimeout(function() {
+              msg.style.display = 'none';
+            }, 5000);
+          })
+          .catch(function(error) {
+            console.error('Error submitting form:', error);
+          });
+        });
+      }
     });
   </script>
 </body>

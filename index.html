@@ -19,97 +19,47 @@
   <style>
     :root{--primary:#0d47a1;--accent:#ffb300;--text:#222;--bg:#fff;--light:#f5f5f5}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:"Alef",sans-serif;color:var(--text);background:var(--bg);font-size:16px;line-height:1.6}
+    body{margin:0;font-family:"Alef",sans-serif;color:var(--text);background:var(--bg)}
     h1,h2,h3,h4{font-family:"Heebo",sans-serif;margin:0}
-    section{padding:40px 20px}
-    .container{max-width:1100px;margin:auto;width:100%}
-    p {margin-top: 0;}
+    section{padding:60px 20px}
+    .container{max-width:1100px;margin:auto}
     
-    /* ─── Media Queries ─── */
+    /* ─── רספונסיביות בסיסית ─── */
     @media (max-width: 768px) {
-      section{padding:30px 15px}
-      .hero-title{font-size:2rem !important}
-      .hero-sub{font-size:1rem !important}
-      .section-title{font-size:1.7rem !important}
-      .card{padding:15px}
-      .grid{gap:20px}
-    }
-    
-    @media (max-width: 480px) {
-      nav ul{flex-direction:column;gap:5px;align-items:center;padding:5px 10px}
-      .hero-title{font-size:1.8rem !important}
-      .section-title{font-size:1.5rem !important}
-      .button{padding:10px 20px;font-size:0.9rem}
-    }
-    
-    /* ─── Burger Menu ─── */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
-      position: absolute;
-      right: 20px;
-      top: 15px;
-      z-index: 1001;
-    }
-    
-    .menu-toggle span {
-      display: block;
-      height: 3px;
-      width: 100%;
-      background-color: var(--primary);
-      border-radius: 3px;
-    }
-    
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
-      
-      nav ul {
-        position: fixed;
-        flex-direction: column;
-        background: white;
-        width: 100%;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        align-items: center;
-        justify-content: center;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        padding-top: 50px;
-      }
-      
-      nav ul.active {
-        transform: translateX(0);
-      }
-      
-      nav ul li {
-        margin: 15px 0;
-      }
+      section{padding:40px 15px}
+      .hero-title{font-size:2.2rem !important}
+      .hero-sub{font-size:1.1rem !important}
+      .button{padding:10px 24px}
     }
     
     /* ─── Nav ─── */
-    nav{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+    nav{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);z-index:1000;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
     nav ul{list-style:none;margin:0;padding:10px 20px;display:flex;gap:20px;justify-content:center}
     nav a{color:var(--primary);text-decoration:none;font-weight:700;transition:.25s}
     nav a:hover{color:var(--accent)}
     
+    /* תפריט לנייד */
+    .menu-toggle{display:none;cursor:pointer;position:absolute;top:10px;right:15px}
+    
+    @media (max-width: 768px) {
+      .menu-toggle{display:block;font-size:24px}
+      nav ul{flex-direction:column;background:white;position:fixed;top:0;right:-100%;height:100vh;width:70%;max-width:300px;transition:right 0.3s;padding-top:60px;gap:10px}
+      nav ul.active{right:0}
+      .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999}
+      .overlay.active{display:block}
+    }
+    
     /* ─── Hero ─── */
     .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden}
     .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-    .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.5);z-index:-1}
+    .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.25);z-index:-1}
     .hero-title{font-size:3rem;margin-bottom:10px;text-shadow:0 2px 6px rgba(0,0,0,.4)}
     .hero-sub{font-size:1.25rem;margin-bottom:30px;text-shadow:0 1px 4px rgba(0,0,0,.4)}
     .button{display:inline-block;padding:14px 32px;background:var(--accent);color:#fff;font-weight:700;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:.2s}
     .button:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.35)}
     
     /* ─── Sections ─── */
-    .section-title{color:var(--primary);margin-bottom:20px;font-size:2.1rem;position:relative;padding-bottom:10px}
-    .section-title::after{content:'';position:absolute;bottom:0;right:0;width:60px;height:3px;background:var(--accent)}
+    .section-title{color:var(--primary);margin-bottom:20px;font-size:2.1rem}
     .grid{display:grid;gap:40px}
     .grid-4{grid-template-columns:repeat(4, 1fr)}
     
@@ -121,12 +71,10 @@
       .grid-4{grid-template-columns:1fr}
     }
     
-    .card{background:var(--light);padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1);text-align:center;transition:transform 0.3s ease, box-shadow 0.3s ease}
-    .card:hover{transform:translateY(-5px);box-shadow:0 6px 12px rgba(0,0,0,.15)}
+    .card{background:var(--light);padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1);text-align:center}
     .icon{font-size:40px;margin-bottom:10px;color:var(--accent)}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));gap:15px}
-    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:6px;transition:transform 0.3s ease}
-    .gallery img:hover{transform:scale(1.03)}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:10px}
+    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:6px}
     
     /* ─── Testimonials ─── */
     #testimonials{position:relative;min-height:160px}
@@ -136,42 +84,26 @@
     .testimonial span{font-weight:700;color:var(--primary)}
     
     /* ─── FAQ & Contact ─── */
-    details{margin-bottom:15px;border:1px solid var(--primary);border-radius:6px;background:#fff;padding:12px;transition:all 0.3s ease}
-    details:hover{box-shadow:0 3px 8px rgba(0,0,0,.1)}
-    details summary{cursor:pointer;font-weight:bold;color:var(--primary)}
-    details summary::-webkit-details-marker{color:var(--accent)}
+    details{margin-bottom:10px;border:1px solid var(--primary);border-radius:6px;background:#fff;padding:10px}
+    details summary{cursor:pointer;font-weight:bold}
     
     .contact{background:var(--primary);color:#fff;text-align:center}
-    .contact a{color:#fff;text-decoration:underline;transition:opacity 0.3s ease}
-    .contact a:hover{opacity:0.8}
+    .contact a{color:#fff;text-decoration:underline}
     form{display:flex;flex-direction:column;gap:12px;max-width:420px;margin:30px auto 0}
-    form input,form textarea{padding:12px;border:none;border-radius:4px;font-family:inherit;width:100%;box-sizing:border-box}
+    form input,form textarea{padding:10px;border:none;border-radius:4px;font-family:inherit;width:100%;box-sizing:border-box}
     form textarea{min-height:120px;resize:vertical}
-    form button{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:4px;font-weight:700;cursor:pointer;transition:background 0.3s ease}
-    form button:hover{background:#e6a100}
-    .success-msg{display:none;margin-top:20px;font-weight:700;color:#fff;background:rgba(255,255,255,0.2);padding:10px;border-radius:4px}
+    form button{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:4px;font-weight:700;cursor:pointer}
+    form button:hover{opacity:.9}
+    .success-msg{display:none;margin-top:20px;font-weight:700;color:#fff}
     
     footer{background:#111;color:#fff;text-align:center;padding:20px;font-size:.9rem}
-    
-    /* ─── Animations ─── */
-    @keyframes fadeIn {
-      from {opacity:0;transform:translateY(20px)}
-      to {opacity:1;transform:translateY(0)}
-    }
-    
-    .animate {
-      animation: fadeIn 0.8s ease forwards;
-    }
   </style>
 </head>
 <body>
+  <div class="overlay" id="overlay"></div>
   <!-- ░░░ Nav ░░░ -->
   <nav>
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
     <ul id="menu">
       <li><a href="#home">בית</a></li>
       <li><a href="#services">שירותים</a></li>
@@ -273,48 +205,39 @@
     let tIndex=0;
     setInterval(()=>{testimonials[tIndex].classList.remove('active');tIndex=(tIndex+1)%testimonials.length;testimonials[tIndex].classList.add('active');},5000);
     
-    /* Hamburger Menu */
+    /* תפריט נייד פשוט */
     const menuToggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('menu');
+    const overlay = document.getElementById('overlay');
     
     menuToggle.addEventListener('click', () => {
       menu.classList.toggle('active');
+      overlay.classList.toggle('active');
     });
     
-    // Close menu when clicking on a link
+    overlay.addEventListener('click', () => {
+      menu.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+    
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.remove('active');
+        overlay.classList.remove('active');
       });
     });
     
-    /* Animation on scroll */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    document.querySelectorAll('section > h2, .card, .gallery img').forEach(el => {
-      observer.observe(el);
-      el.style.opacity = '0';
-    });
-    
-    /* AJAX form submit (Formsubmit) */
-    const form=document.getElementById('contact-form');
-    const msg=document.getElementById('success-msg');
-    form.addEventListener('submit',async e=>{
+    /* טופס יצירת קשר */
+    const form = document.getElementById('contact-form');
+    const msg = document.getElementById('success-msg');
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      const data=new FormData(form);
+      const data = new FormData(form);
       try {
-        await fetch('https://formsubmit.co/ajax/mailotgroup@gmail.com',{method:'POST',body:data});
+        await fetch('https://formsubmit.co/ajax/mailotgroup@gmail.com', {method: 'POST', body: data});
         form.reset();
-        msg.style.display='block';
-        setTimeout(() => {
-          msg.style.display='none';
-        }, 5000);
+        msg.style.display = 'block';
+        setTimeout(() => { msg.style.display = 'none'; }, 5000);
       } catch (error) {
         console.error('Error submitting form:', error);
       }

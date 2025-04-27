@@ -1,67 +1,4 @@
-<script>
-    window.onload = function() {
-      // סיבוב המלצות
-      const testimonials = document.querySelectorAll('.testimonial');
-      let tIndex = 0;
-      setInterval(() => {
-        testimonials[tIndex].classList.remove('active');
-        tIndex = (tIndex + 1) % testimonials.length;
-        testimonials[tIndex].classList.add('active');
-      }, 5000);
-      
-      // בדיקה אם יש הודעת תודה בכתובת
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('thankyou') === 'true') {
-        const successMsg = document.getElementById('success-msg');
-        if (successMsg) {
-          successMsg.style.display = 'block';
-          
-          // גלילה לאזור ההודעה אם יש צורך
-          const contactSection = document.getElementById('contact');
-          if (contactSection && !isElementInViewport(successMsg)) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
-          }
-          
-          setTimeout(() => {
-            successMsg.style.display = 'none';
-          }, 5000);
-        }
-      }
-    }
-    
-    // פונקציה לבדיקה אם אלמנט נראה במסך
-    function isElementInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-      );
-    }
-    
-    // תפריט נייד
-    const menuToggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-    const overlay = document.getElementById('overlay');
-    
-    menuToggle.addEventListener('click', () => {
-      menu.classList.toggle('active');
-      overlay.classList.toggle('active');
-    });
-    
-    overlay.addEventListener('click', () => {
-      menu.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-    
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('active');
-        overlay.classList.remove('active');
-      });
-    });
-  </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
@@ -69,16 +6,19 @@
   <title>הקולנוע הנודד | חוויית סרט חוץ בלתי נשכחת!</title>
   <meta name="description" content="הקולנוע הנודד – הופכים כל מרחב לחוויה קולנועית מרשימה עם מסך מתנפח, מקרן והגברה מקצועית באיכות בלתי מתפשרת." />
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&family=Alef:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Google Analytics (בטל הערות והכנס ID אם יש) -->
-  <!--
+  
+  <!-- Google Analytics ותג Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config','G-XXXXXXXXXX');
+    gtag('config', 'G-XXXXXXXXXX'); // מזהה Analytics שלך
+    
+    // הוסף את מזהה Google Ads שלך כאן
+    gtag('config', 'AW-XXXXXXXXXX'); // מזהה Google Ads שלך
   </script>
-  -->
+  
   <style>
     :root{--primary:#0d47a1;--accent:#ffb300;--text:#222;--bg:#fff;--light:#f5f5f5}
     html{scroll-behavior:smooth}
@@ -117,10 +57,6 @@
     .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh;color:#fff;overflow:hidden}
     .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
     .hero::after{content:'';position:absolute;inset:0;background:rgba(13,71,161,.35);z-index:-1}
-    .hero-title{font-size:3rem;margin-bottom:10px;text-shadow:0 2px 6px rgba(0,0,0,.4);width:100%;padding:0 10px;box-sizing:border-box}
-    .hero-sub{font-size:1.25rem;margin-bottom:30px;text-shadow:0 1px 4px rgba(0,0,0,.4);width:100%;padding:0 15px;box-sizing:border-box}
-    .button{display:inline-block;padding:14px 32px;background:var(--accent);color:#fff;font-weight:700;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:.2s}
-    .button:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.35)}
     .hero-title{font-size:3rem;margin-bottom:10px;text-shadow:0 2px 6px rgba(0,0,0,.4);width:100%;padding:0 10px;box-sizing:border-box}
     .hero-sub{font-size:1.25rem;margin-bottom:30px;text-shadow:0 1px 4px rgba(0,0,0,.4);width:100%;padding:0 15px;box-sizing:border-box}
     .button{display:inline-block;padding:14px 32px;background:var(--accent);color:#fff;font-weight:700;border-radius:50px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:.2s}
@@ -190,6 +126,55 @@
     }
     
     footer{background:#111;color:#fff;text-align:center;padding:20px;font-size:.9rem}
+    
+    /* כפתורי מדיה חברתית */
+    .social-buttons {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+    
+    .social-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+    
+    .social-button:hover {
+      transform: scale(1.1);
+    }
+    
+    .whatsapp {
+      background-color: #25D366;
+    }
+    
+    .facebook {
+      background-color: #4267B2;
+    }
+    
+    /* התאמה למובייל */
+    @media (max-width: 768px) {
+      .social-buttons {
+        left: 10px;
+        bottom: 10px;
+      }
+      
+      .social-button {
+        width: 45px;
+        height: 45px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -306,7 +291,7 @@
       <p><strong>טלפון:</strong> <span dir="ltr"><a href="tel:+972542070020">054‑207‑0020</a></span><br>
         <strong>דוא״ל:</strong> <a href="mailto:mailotgroup@gmail.com">mailotgroup@gmail.com</a></p>
       <form id="contact-form" action="https://formsubmit.co/mailotgroup@gmail.com" method="POST">
-        <input type="hidden" name="_next" value="https://tmarchum.github.io/otcinema/?thankyou=true#contact">
+        <input type="hidden" name="_next" value="https://movingcinema.co.il/?thankyou=true#contact">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="name" placeholder="שם מלא" required />
         <input type="email" name="email" placeholder="דוא&quot;ל" required />
@@ -316,64 +301,36 @@
       <div class="success-msg" id="success-msg">תודה על פנייתך, נשוב אליך בהקדם.</div>
     </div>
   </section>
-  <footer>© 2019 הקולנוע הנודד</footer>
+  
+  <!-- כפתורי מדיה חברתית -->
+  <div class="social-buttons">
+    <a href="https://wa.me/972542070020?text=שלום,%20אני%20מעוניין/ת%20בפרטים%20לגבי%20הקולנוע%20הנודד" target="_blank" class="social-button whatsapp" aria-label="שלח הודעת וואטסאפ">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 448 512">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com/share.php?u=https://movingcinema.co.il/" target="_blank" class="social-button facebook" aria-label="שתף בפייסבוק">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 320 512">
+        <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
+      </svg>
+    </a>
+  </div>
+  
+  <footer>© 2025 הקולנוע הנודד</footer>
+  
   <!-- ░░░ Scripts ░░░ -->
   <script>
-  <script>
-    /* Testimonials rotator - גרסה מקורית שעבדה */
-    var testimonials = document.querySelectorAll('.testimonial');
-    var tIndex = 0;
-    
-    function rotateTestimonials() {
-      testimonials[tIndex].classList.remove('active');
-      tIndex = (tIndex + 1) % testimonials.length;
-      testimonials[tIndex].classList.add('active');
-    }
-    
-    // הפעלת הפונקציה כל 5 שניות
-    setInterval(rotateTestimonials, 5000);
-    
-    /* תפריט נייד פשוט */
-    var menuToggle = document.getElementById('menu-toggle');
-    var menu = document.getElementById('menu');
-    var overlay = document.getElementById('overlay');
-    
-    menuToggle.addEventListener('click', function() {
-      menu.classList.toggle('active');
-      overlay.classList.toggle('active');
-    });
-    
-    overlay.addEventListener('click', function() {
-      menu.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-    
-    var navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-        menu.classList.remove('active');
-        overlay.classList.remove('active');
-      });
-    });
-    
-    /* טופס יצירת קשר */
-    var form = document.getElementById('contact-form');
-    var msg = document.getElementById('success-msg');
-    
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var formData = new FormData(form);
-      
-      // הצגת הודעת תודה (בלי שליחה בפועל בגרסת הדגמה)
-      form.reset();
-      msg.style.display = 'block';
-      msg.textContent = 'תודה על פנייתך, נשוב אליך בהקדם.';
-      
-      // הסתרת ההודעה לאחר 5 שניות
-      setTimeout(function() {
-        msg.style.display = 'none';
+    window.onload = function() {
+      // סיבוב המלצות
+      const testimonials = document.querySelectorAll('.testimonial');
+      let tIndex = 0;
+      setInterval(() => {
+        testimonials[tIndex].classList.remove('active');
+        tIndex = (tIndex + 1) % testimonials.length;
+        testimonials[tIndex].classList.add('active');
       }, 5000);
-    });
-  </script>
-</body>
-</html>
+      
+      // בדיקה אם יש הודעת תודה בכתובת
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('thankyou') === 'true') {
+        const successMsg = document.getElementById('success-msg

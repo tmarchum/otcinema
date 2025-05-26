@@ -318,19 +318,72 @@
   
   <footer>© 2025 הקולנוע הנודד</footer>
   
-  <!-- ░░░ Scripts ░░░ -->
+  <!-- ✅ סקריפט מתוקן במלואו -->
   <script>
     window.onload = function() {
-      // סיבוב המלצות
+      // סיבוב המלצות - מתוקן!
       const testimonials = document.querySelectorAll('.testimonial');
       let tIndex = 0;
-      setInterval(() => {
-        testimonials[tIndex].classList.remove('active');
-        tIndex = (tIndex + 1) % testimonials.length;
-        testimonials[tIndex].classList.add('active');
-      }, 5000);
       
-      // בדיקה אם יש הודעת תודה בכתובת
+      console.log('מצאתי', testimonials.length, 'ביקורות'); // לבדיקה
+      
+      if (testimonials.length > 1) {
+        setInterval(() => {
+          // הסרת קלאס מהביקורת הנוכחית
+          testimonials[tIndex].classList.remove('active');
+          
+          // מעבר לביקורת הבאה
+          tIndex = (tIndex + 1) % testimonials.length;
+          
+          // הוספת קלאס לביקורת החדשה
+          testimonials[tIndex].classList.add('active');
+          
+          console.log('עברתי לביקורת', tIndex); // לבדיקה
+        }, 4000); // כל 4 שניות
+      }
+      
+      // ✅ הודעת הצלחה מתוקנת!
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('thankyou') === 'true') {
-        const successMsg = document.getElementById('success-msg
+        const successMsg = document.getElementById('success-msg');
+        if (successMsg) {
+          successMsg.style.display = 'block';
+          // גלילה לטופס
+          successMsg.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+      
+      // תפריט נייד
+      const menuToggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('menu');
+      const overlay = document.getElementById('overlay');
+      
+      if (menuToggle && menu && overlay) {
+        menuToggle.addEventListener('click', () => {
+          menu.classList.toggle('active');
+          overlay.classList.toggle('active');
+        });
+        
+        overlay.addEventListener('click', () => {
+          menu.classList.remove('active');
+          overlay.classList.remove('active');
+        });
+      }
+    };
+
+    // הוספת event listener לטופס
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          const button = form.querySelector('button[type="submit"]');
+          if (button) {
+            button.textContent = 'שולח...';
+            button.disabled = true;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
